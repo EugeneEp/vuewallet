@@ -1,0 +1,58 @@
+{% extends 'wallet/base.html' %}
+
+{% block title %}
+
+	Переводы
+
+{% endblock %}
+
+{% block content_title %}
+
+Переводы
+
+<span>Выберете способ перевода</span>
+
+{% endblock %}
+
+{% block content %}
+
+	<div class="transfer-block">
+
+		<form class="data-form">
+			<div>
+				<div class="form-group">
+					<span>На банковскую карту</span>
+					<input type="text" placeholder="Введите номер карты" name="card" class="form-control">
+					<input type="number" placeholder="Сумма" name="amount" class="form-control">
+				</div>
+				<div class="form-group">
+					<span>На другой кошелек</span>
+					<input type="text" placeholder="Номер кошелька" name="card" class="form-control">
+					<input type="number" placeholder="Сумма" name="amount" class="form-control">
+				</div>
+				<div class="form-group">
+					<span>На рассчетный счет</span>
+					<input type="text" placeholder="Номер счета" name="card" class="form-control">
+					<input type="number" placeholder="Сумма" name="amount" class="form-control">
+				</div>
+				<div class="form-group">
+					<span>Массовые выплаты</span>
+
+					<div class="custom-file">
+					    <input type="file" class="custom-file-input" id="inputGroupFile01"
+					      aria-describedby="inputGroupFileAddon01">
+					    <label class="custom-file-label" for="inputGroupFile01">Выберете CSV файл</label>
+					</div>
+				</div>
+			</div>
+			<input type="hidden" name="action" value="transfer">
+			<input type="hidden" name="method" value="{{url_for('wallet.transfer')}}">
+					
+			<span style="color: red; display: none;" class="error"></span>
+			<input type="submit" class="btn-square btn-blue-gradient" value="Перевести">
+
+		</form>
+
+	</div>
+
+{% endblock %}

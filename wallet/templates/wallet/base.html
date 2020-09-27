@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,700,800&display=swap" rel="stylesheet">
+    <title>
+      
+    {% block title %}
+
+    {% endblock %} | Wallet
+
+    </title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+</head>
+<body>
+<main>
+	<nav class="navbar navbar-expand-lg navbar-light bg-white row header">
+		<div class="col-2 header-brand">
+	  		<a class="navbar-brand" href="{{ url_for('index') }}">Wallet</a>
+	  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    		<span class="navbar-toggler-icon"></span>
+	  		</button>
+	  	</div>
+	  	<div class="collapse navbar-collapse col-10" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+				
+		    </ul>
+		    <ul class="navbar-nav navbar-nav-wallet">
+		    	<li class="nav-item dropdown">
+			        <a class="nav-link wallet-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			          <div class="nav-icons">
+			          	<i class="fa fa-chevron-down"></i>
+			          	<i class="fa fa-wallet"></i>
+			          </div>
+			          <div class="nav-info">
+			          	<span class="info-header">Счет Wallet</span>
+			          	<span>{{current_user.balance}} р</span>
+			          </div>
+			        </a>
+			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			          <a class="dropdown-item" href="#">Пока ничего</a>
+			          <a class="dropdown-item" href="#">Пока ничего нет</a>
+			          <div class="dropdown-divider"></div>
+			          <a class="dropdown-item" href="#">Тут пока ничего нет</a>
+			        </div>
+			    </li>
+		    </ul>
+	    <!--<form class="form-inline my-2 my-lg-0" action="">
+	      <input class="form-control mr-sm-2" type="search" name='search' placeholder="Search" aria-label="Search" value="{{request.args.get('search', '')}}">
+	      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+	    </form>-->
+	  	</div>
+	</nav>
+
+	<div class="container-custom">
+		<div class="row">
+			<div class="col-2 left-menu">
+				<ul class="navbar-nav navbar-header">
+			        <li class="nav-item dropdown navbar-header">
+			        	<div class="profile_pic" data-file='{{current_user.id}}'>
+			        		
+			        	</div>
+			        	<h7>+ {{ current_user.phone }}</h7>
+			        </li>
+                </ul>
+                <ul class="navbar-nav navbar-menu-profile">
+                	<li class="nav-item dropdown">
+			        	<a href="{{ url_for('wallet.index') }}">
+			        		Мой кошелек
+			        	</a>
+			        </li>
+			        <li class="nav-item dropdown">
+			        	<a href="{{ url_for('wallet.profile') }}">
+			        		Профиль
+			        	</a>
+			        </li>
+			        <li class="nav-item dropdown">
+			        	<a href="{{ url_for('wallet.charge') }}">
+			        		Пополнить
+			        	</a>
+			        </li>
+			        <li class="nav-item dropdown">
+			        	<a href="{{ url_for('wallet.transfer') }}">
+			        		Переводы
+			        	</a>
+			        </li>
+			        <li class="nav-item dropdown">
+			        	<a href="{{ url_for('wallet.moneybank') }}">
+			        		Сбор средств
+			        	</a>
+			        </li>
+			        <li class="nav-item dropdown">
+			        	<a href="{{ url_for('wallet.donate') }}">
+			        		Пожертвования
+			        	</a>
+			        </li>
+			        <li class="nav-item dropdown">
+			        	<a href="{{ url_for('wallet.partner') }}">
+			        		Кабинет партнера
+			        	</a>
+			        </li>
+					<li class="nav-item dropdown">
+			        	<a href="{{ url_for('logout') }}">
+			        		<strong>Выйти</strong>
+			        	</a>
+			        </li>
+                </ul>
+			</div>
+			<div class="col-10">
+				<div class="row">
+					<div class="col-lg-2 col-md-3">
+						<h5 class="inner-title-profile">
+							{% block content_title %}
+
+							{% endblock %}
+						</h5>
+					</div>
+					<div class="col-lg-10 col-md-9">
+							{% block content_form %}
+
+							{% endblock %}
+					</div>
+				</div>
+				{% block content %}
+				
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+	<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>  
+    <script type="text/javascript" src="/static/js/script.js"></script>
+</main>
+</body>
+</html>

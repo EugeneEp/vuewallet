@@ -1,0 +1,101 @@
+{% extends 'wallet/base.html' %}
+
+{% block title %}
+
+	Мой кошелек
+
+{% endblock %}
+
+{% block content_title %}
+
+Мой кошелек
+
+<span>История операций</span>
+
+{% endblock %}
+
+{% block content_form %}
+<div class="form-block">
+	<form class="search-form form-inline">
+		<a href="" class="trans-range" data-range='today'>За сегодня</a>
+		<a href="" class="trans-range" data-range='yesterday'>За вчера</a>
+		<a href="" class="trans-range" data-range='week'>За неделю</a>
+
+		<div class="input-group">
+	    	<div class="input-group-prepend">
+	      		<div class="input-group-text">с</div>
+	    	</div>
+	    	<input type="date" class="form-control" name='from' value="{{request.args.get('from', '')}}">
+	  	</div>
+
+	  	<div class="input-group">
+	    	<div class="input-group-prepend">
+	      		<div class="input-group-text">по</div>
+	    	</div>
+	    	<input type="date" class="form-control" name='to' value="{{request.args.get('to', '')}}">
+	  	</div>
+	  	<input type="submit" class="btn btn-sm btn-light" value="Поиск">
+	  	<a href="{{url_for('wallet.index')}}">Сбросить фильтры</a>
+	</form>
+</div>
+{% endblock %}
+
+{% block content %}
+
+	<div class="text-left">
+		<input type="button" data-action="csv" data-method="{{url_for('wallet.csv_transactions')}}" class="btn btn-info action-btn" value="Выгрузить в CSV">
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Дата</th>
+				<th>Тип транзакции</th>
+				<th>Отправитель</th>
+				<th>Получатель</th>
+				<th>Статус</th>
+				<th>Сумма</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for i in t.items %}
+				<tr>
+					<td>{{i.time}}</td>
+					<td>{{i.movement_type}}</td>
+					<td></td>
+					<td></td>
+					<td>{{i.status}}</td>
+					<td>{{i.amount}}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+		<nav>
+			<ul class="pagination">
+				<li class="page-item {{'disabled' if not t.has_prev else ''}}"><a class="page-link" href="?page={{t.prev_num}}">Назад</a></li>
+
+				{% if t.pages and t.pages == t.page and t.pages != t.next_num and t.pages not in [1, 2] %}
+		    		<li class="page-item"><a class="page-link" href="?page=1">1</a>
+		    		<li class="page-item disabled"><a class="page-link" href="#">...</a></li></li>
+		    	{% endif %}
+
+				{% if t.has_prev %}
+		    		<li class="page-item"><a class="page-link" href="?page={{t.prev_num}}">{{t.prev_num}}</a></li>
+		    	{% endif %}
+
+		    	<li class="page-item active"><a class="page-link" href="?page={{t.page}}">{{t.page}}</a></li>
+
+		    	{% if t.has_next %}
+		    		<li class="page-item"><a class="page-link" href="?page={{t.next_num}}">{{t.next_num}}</a></li>
+		    	{% endif %}
+
+		    	{% if t.pages and t.pages != t.page and t.pages != t.next_num %}
+		    		<li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+		    		<li class="page-item"><a class="page-link" href="?page={{t.pages}}">{{t.pages}}</a></li>
+		    	{% endif %}
+		    	<li class="page-item {{'disabled' if not t.has_next else ''}}"><a class="page-link" href="?page={{t.next_num}}">Вперед</a></li>
+			</ul>
+		</nav>
+
+{% endblock %}

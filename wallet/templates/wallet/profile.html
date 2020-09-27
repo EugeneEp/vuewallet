@@ -1,0 +1,57 @@
+{% extends 'wallet/base.html' %}
+
+{% block title %}
+
+	Профиль
+
+{% endblock %}
+
+{% block content_title %}
+
+Профиль
+
+<span>Ваши личные данные</span>
+
+{% endblock %}
+
+{% block content %}
+
+	<div class="charge-block">
+		<form class="data-form" id="profile_picture">
+			<a href="#" class="t2">Добавить изображение профиля</a>
+			<div class="profile_pic" data-file='{{current_user.id}}'>
+				
+			</div>
+			<div class="file-field">
+			    <input type="file" id="file" class="input-file" name="img" accept="image/gif, image/jpeg, image/png">
+			    <label for="file" class="btn btn-tertiary js-labelFile">
+			    	<span class="js-fileName">Выберете файл</span>
+			    </label>
+			</div>
+			<input type="hidden" name="action" value="profile_picture">
+			<input type="hidden" name="method" value="{{url_for('wallet.profile_picture')}}">
+			<span style="color: red; display: none;" class="error"></span>
+			<span style="color: green; display: none;" class="success"></span>
+			<input type="submit" class="btn-square btn-blue-gradient" value="Загрузить">
+		</form>
+		<form class="data-form">
+			<a href="#" class="t2">Идентификация кошелька</a>
+			<p class="t5">Введите ваши данные для получения идентифицированного кошелька.</p>
+			<a href="#">Фамилия Имя Отчество</a>
+			<input type="text" required="" name="fullname" value="{{identity['fullname']}}" placeholder="Иванов Иван Иванович" class="form-control">
+			<a href="#">Серия номер паспорта</a>
+			<input type="text" required="" name="passport" value="{{identity['passport']}}" placeholder="1111 111111" class="form-control">
+			<a href="#">Дата выдачи</a>
+			<input type="date" required="" name="passportIssuedAt" value="{{identity['passportIssuedAt']}}" class="form-control">
+
+			<input type="hidden" name="action" value="profile">
+			<input type="hidden" name="method" value="{{url_for('wallet.profile')}}">
+
+			<span style="color: red; display: none;" class="error"></span>
+			<span style="color: green; display: none;" class="success"></span>
+			<input type="submit" class="btn-square btn-blue-gradient" value="Отправить">
+		</form>
+
+	</div>
+
+{% endblock %}

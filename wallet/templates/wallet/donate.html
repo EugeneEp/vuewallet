@@ -1,0 +1,52 @@
+{% extends 'wallet/base.html' %}
+
+{% block title %}
+
+	Пожертвования
+
+{% endblock %}
+
+{% block content_title %}
+
+Пожертвования
+
+<span>Ваши личные данные</span>
+
+<p>Принимай донаты с любых сервисов и на любые суммы!</p>
+
+{% endblock %}
+
+{% block content %}
+
+	<div class="charge-block">
+		<form class="data-form">
+			<p class="t5">1. Настройте интеграцию со стриминговыми сервисами</p>
+			<div class="charge-images">
+				<img src="/static/images/twitch.png">
+				<img src="/static/images/wasd.png">
+				<img src="/static/images/youtube.png">
+			</div>
+
+			<p class="t5">2. Настройте прием пожертвований</p>
+
+			<a href="#">Открыть настройки пожертвований</a>
+
+
+			<a href="#">Создать ссылку для оплаты <i class="fa fa-info-circle"></i></a>
+			<input type="text" name="" class="form-control">
+
+			<a href="#">Создать ссылку для оплаты <i class="fa fa-info-circle"></i></a>
+
+			<a href="#" class="t2">Создать виджет оплаты</a>
+			<p class="t5">Виджет - кастоммизированная ссылка на оплату, которая позволяет принимать платежи любым способом без создания собственного сайта.<br>Идеальный вариант для торговли в социальных сетях и мессенджерах.</p>
+			<a href="#" class="t2">Получить виджет</a>
+
+			<input type="hidden" name="action" value="donate">
+			<input type="hidden" name="method" value="{{url_for('wallet.donate')}}">
+
+			<span style="color: red; display: none;" class="error"></span>
+			<input type="submit" class="btn-square btn-blue-gradient" value="Создать">
+		</form>
+	</div>
+
+{% endblock %}
