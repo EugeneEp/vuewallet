@@ -14,9 +14,9 @@ import json
 import jwt
 
 # index
-#@app.route('/')
-#def index():
-	#return render_template('index.html')
+@app.route('/')
+def index():
+	return json.dumps({'success':True,'msg':''})
 
 # Роут на страницы с информацией о компании
 #@app.route('/<template>/info')

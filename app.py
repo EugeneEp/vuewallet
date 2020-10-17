@@ -14,6 +14,7 @@ from flask import current_app
 app = Flask(__name__)
 app.config.from_object(Configuration)
 db = SQLAlchemy(app)
+client = app.test_client()
 
 #enable CORS
 CORS(app)
