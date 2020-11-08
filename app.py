@@ -16,6 +16,7 @@ app.config.from_object(Configuration)
 db = SQLAlchemy(app)
 client = app.test_client()
 
+
 #enable CORS
 CORS(app)
 
@@ -31,7 +32,8 @@ def token_required(f):
 		expired_msg = {'success':False, 'msg': 'Нужно авторизоваться'}
 		if len(auth_headers) != 2:
 			return json.dumps(invalid_msg)
-
+		if auth_headers[0] != 'Bearer':
+			return json.dumps(invalid_msg)
 		try:
 			token = auth_headers[1]
 			data = jwt.decode(token, current_app.config['SECRET_KEY'])

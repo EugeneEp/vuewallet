@@ -55,3 +55,15 @@ def test_profile(data):
 
 	assert res.status_code == 200
 	assert res_json['success'] == True
+
+def test_charge(data):
+	headers = {
+		'Content-Type':'application/json',
+		'Authorization':'Bearer: ' + pytest.user['token']
+	}
+	res = client.post('/wallet/charge/back', headers=headers)
+
+	res_json = json.loads(res.data)
+
+	assert res.status_code == 200
+	assert res_json['success'] == False

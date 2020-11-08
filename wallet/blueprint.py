@@ -5,10 +5,8 @@ from flask import redirect
 from flask import url_for
 from sqlalchemy import and_
 from flask_login import current_user
-import jwt
 from app import db
-from models import Users, Transactions, Wallets, hashpass, hashcsv, mergeTwoListsAsDict, Sms_approve, API, timeToDate, dateToTime, movementTranslate, getUserByToken, paginatorParse, transParse
-import requests
+from models import Users, Transactions, Wallets, hashpass, hashcsv, timeToDate, dateToTime, movementTranslate, getUserByToken, paginatorParse, transParse
 import time as timec
 import glob
 import os

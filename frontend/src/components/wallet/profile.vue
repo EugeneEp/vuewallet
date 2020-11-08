@@ -84,7 +84,7 @@ export default {
 	    	ajaxConfig: {
 		        headers: {
 		          'Content-Type': 'application/json',
-		          Authorization: 'Bearer: ' + this.$store.state.user.token
+		          Authorization: 'Bearer ' + this.$store.state.user.token
 		        }
 			},
 	    };
@@ -135,7 +135,7 @@ export default {
 			axios.post(path, formData, {
 			    headers: {
 			      'Content-Type': 'multipart/form-data',
-			      Authorization: 'Bearer: ' + this.$store.state.user.token
+			      Authorization: 'Bearer ' + this.$store.state.user.token
 			    }
 			}).then((res) => {
 				this.message = res.data.msg;

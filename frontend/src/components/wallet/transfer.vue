@@ -80,7 +80,7 @@ export default {
     	ajaxConfig: {
 	        headers: {
 	          'Content-Type': 'application/json',
-	          Authorization: 'Bearer: ' + this.$store.state.user.token
+	          Authorization: 'Bearer ' + this.$store.state.user.token
 	        }
 		},
     };

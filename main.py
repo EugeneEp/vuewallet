@@ -1,5 +1,3 @@
-#!C:\python 3.8.1\python.exe
-
 from app import app
 from app import db
 from wallet.blueprint import wallet
